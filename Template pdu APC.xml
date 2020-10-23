@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2020-10-23T11:50:39Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template APC pdu</template>
+            <name>Template APC pdu</name>
+            <templates>
+                <template>
+                    <name>Template Module ICMP Ping</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Generic</name>
+                </application>
+                <application>
+                    <name>Outlet</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Contact</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.4.0</snmp_oid>
+                    <key>Contact</key>
+                    <delay>1h</delay>
+                    <history>15d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>Generic</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Firmware Version</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.318.1.1.4.1.2.0</snmp_oid>
+                    <key>FirmwareRev</key>
+                    <delay>1h</delay>
+                    <history>15d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>Generic</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Hostname</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.318.1.1.4.3.3.0</snmp_oid>
+                    <key>HostName</key>
+                    <delay>1h</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>Generic</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Location</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.6.0</snmp_oid>
+                    <key>Location</key>
+                    <delay>1h</delay>
+                    <history>15d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>Generic</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Manufactured date</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.318.1.1.4.1.3.0</snmp_oid>
+                    <key>ManufactoryDate</key>
+                    <delay>1h</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>The date when the PDU was manufactured in mm/dd/yy format.&#13;
+This value is set at the factory.</description>
+                    <applications>
+                        <application>
+                            <name>Generic</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>PDU Model</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.318.1.1.4.1.4.0</snmp_oid>
+                    <key>pduModel</key>
+                    <delay>1h</delay>
+                    <history>15d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>Generic</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Serial Number</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.318.1.1.4.1.5.0</snmp_oid>
+                    <key>SerialNumber</key>
+                    <delay>1h</delay>
+                    <history>15d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>Generic</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Uptime</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.3.0</snmp_oid>
+                    <key>sysUpTime</key>
+                    <history>15d</history>
+                    <trends>30d</trends>
+                    <units>s</units>
+                    <applications>
+                        <application>
+                            <name>Generic</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;100</expression>
+                            <name>{HOST.NAME} has been restarted (uptime &lt; 10m)</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>PDU Outlet Status discovery</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPVALUE},1.3.6.1.4.1.318.1.1.12.3.5.1.1.1,{#OUTLETDESCR},1.3.6.1.4.1.318.1.1.12.3.5.1.1.2]</snmp_oid>
+                    <key>rPDUOutletStatusIndex</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Outlet {#SNMPINDEX} {#OUTLETDESCR} Pending commit</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.318.1.1.12.3.5.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>rPDUOutletStatusCommandPending[.{#SNMPINDEX}]</key>
+                            <history>15d</history>
+                            <trends>30d</trends>
+                            <description>Getting this variable will return the command pending&#13;
+state of the outlet. If a command is pending on the&#13;
+outlet, the outletStatusCommandPending (1) value&#13;
+will be returned. If there is not a command pending&#13;
+on the outlet, the outletStatusNoCommandPending (2)&#13;
+will be returned.</description>
+                            <applications>
+                                <application>
+                                    <name>Outlet</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>APC outlet command pending</name>
+                            </valuemap>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}=1</expression>
+                                    <name>Outlet {#SNMPINDEX} {#OUTLETDESCR} has a pending commit</name>
+                                    <priority>INFO</priority>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Outlet {#SNMPINDEX} Description</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.318.1.1.12.3.5.1.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>rPDUOutletStatusOutletName[Outletname.{#SNMPINDEX}]</key>
+                            <delay>1h</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>Outlet</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Outlet {#SNMPINDEX} {#OUTLETDESCR} Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.318.1.1.12.3.5.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>rPDUOutletStatusOutletState[Status.{#SNMPINDEX}]</key>
+                            <delay>3m</delay>
+                            <history>14d</history>
+                            <trends>30d</trends>
+                            <applications>
+                                <application>
+                                    <name>Outlet</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>APC outlet status</name>
+                            </valuemap>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{diff()}=1</expression>
+                                    <name>Outlet {#SNMPINDEX} {#OUTLETDESCR} Status Changed</name>
+                                    <priority>INFO</priority>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+    <value_maps>
+        <value_map>
+            <name>APC outlet command pending</name>
+            <mappings>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Yes</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>No</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>APC outlet status</name>
+            <mappings>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>On</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>Off</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>

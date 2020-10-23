@@ -1,0 +1,1 @@
+# Zabbix-template-for-APC-pdu-79xx
